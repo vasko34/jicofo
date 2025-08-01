@@ -30,7 +30,7 @@ usually installed in `/etc/jitsi/jicofo/jicofo.conf`. See the
 [reference.conf](https://github.com/jitsi/jicofo/blob/master/jicofo-selector/src/main/resources/reference.conf) file
 for the available options.
 The [automatic recording](doc/jibri-auto-recording.md) document describes how to
-enable Jibri recordings based on participant count.
+enable Jibri recordings based on participant count. A sample configuration can be found at `resources/config/jicofo.conf.example`.
 
 # Installation
 ## Debian

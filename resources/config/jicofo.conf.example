@@ -1,0 +1,9 @@
+jicofo {
+  jibri {
+    # Number of participants required in the conference before recording starts
+    auto-start-participants = 2
+
+    # Number of participants below which any active recording stops
+    auto-stop-participants = 1
+  }
+}
