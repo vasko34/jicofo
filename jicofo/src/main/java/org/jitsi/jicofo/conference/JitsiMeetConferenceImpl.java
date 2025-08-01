@@ -1959,6 +1959,7 @@ public class JitsiMeetConferenceImpl
         {
             userParticipantCount++;
         }
+        maybeStartRecording();
     }
 
     private void userParticipantRemoved()
@@ -1975,6 +1976,7 @@ public class JitsiMeetConferenceImpl
                 userParticipantCount--;
             }
         }
+        maybeStopRecording();
     }
 
     /**
@@ -1986,6 +1988,62 @@ public class JitsiMeetConferenceImpl
         synchronized (participantLock)
         {
             return userParticipantCount;
+        }
+    }
+
+    /** Start a Jibri recording session automatically if needed. */
+    private void maybeStartRecording()
+    {
+        if (jibriRecorder == null)
+        {
+            return;
+        }
+
+        if (!jibriRecorder.getJibriSessions().isEmpty())
+        {
+            return;
+        }
+
+        if (getUserParticipantCount() < 2)
+        {
+            return;
+        }
+
+        Participant initiator = participants.values().stream()
+            .filter(Participant::isUserParticipant)
+            .findFirst()
+            .orElse(null);
+
+        if (initiator == null)
+        {
+            return;
+        }
+
+        JibriIq startIq = new JibriIq();
+        startIq.setType(IQ.Type.set);
+        startIq.setFrom(initiator.getChatMember().getOccupantJid());
+        startIq.setAction(JibriIq.Action.START);
+        startIq.setRecordingMode(JibriIq.RecordingMode.FILE);
+
+        jibriRecorder.handleStartRequest(startIq);
+    }
+
+    /** Stop any active Jibri recording session if needed. */
+    private void maybeStopRecording()
+    {
+        if (jibriRecorder == null)
+        {
+            return;
+        }
+
+        if (getUserParticipantCount() > 1)
+        {
+            return;
+        }
+
+        for (JibriSession session : jibriRecorder.getJibriSessions())
+        {
+            session.stop(null);
         }
     }
 
