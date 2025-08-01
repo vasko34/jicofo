@@ -29,6 +29,8 @@ Jicofo takes its configuration from a [hocon](https://github.com/lightbend/confi
 usually installed in `/etc/jitsi/jicofo/jicofo.conf`. See the
 [reference.conf](https://github.com/jitsi/jicofo/blob/master/jicofo-selector/src/main/resources/reference.conf) file
 for the available options.
+The [automatic recording](doc/jibri-auto-recording.md) document describes how to
+enable Jibri recordings based on participant count.
 
 # Installation
 ## Debian
