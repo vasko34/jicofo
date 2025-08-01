@@ -30,7 +30,11 @@ usually installed in `/etc/jitsi/jicofo/jicofo.conf`. See the
 [reference.conf](https://github.com/jitsi/jicofo/blob/master/jicofo-selector/src/main/resources/reference.conf) file
 for the available options.
 The [automatic recording](doc/jibri-auto-recording.md) document describes how to
-enable Jibri recordings based on participant count. A sample configuration can be found at `resources/config/jicofo.conf.example`.
+enable Jibri recordings based on participant count. Recording starts
+automatically once two or more participants join a conference and stops when it
+drops to one or less. The feature is enabled by default and can be disabled by
+setting `jicofo.jibri.auto-record = false`. A sample configuration can be found
+at `resources/config/jicofo.conf.example`.
 
 # Installation
 ## Debian
