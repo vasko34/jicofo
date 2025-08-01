@@ -40,6 +40,7 @@ import org.jitsi.xmpp.extensions.jingle.*;
 
 import org.jitsi.xmpp.extensions.jitsimeet.*;
 import org.jitsi.jicofo.jibri.*;
+import org.jitsi.jicofo.jibri.JibriConfig;
 
 import org.jitsi.xmpp.extensions.visitors.*;
 import org.jivesoftware.smack.*;
@@ -2004,7 +2005,10 @@ public class JitsiMeetConferenceImpl
             return;
         }
 
-        if (getUserParticipantCount() < 2)
+        int startThreshold = JibriConfig.config.getAutoStartParticipants() == null ? 2
+            : JibriConfig.config.getAutoStartParticipants();
+
+        if (getUserParticipantCount() < startThreshold)
         {
             return;
         }
@@ -2036,7 +2040,10 @@ public class JitsiMeetConferenceImpl
             return;
         }
 
-        if (getUserParticipantCount() > 1)
+        int stopThreshold = JibriConfig.config.getAutoStopParticipants() == null ? 1
+            : JibriConfig.config.getAutoStopParticipants();
+
+        if (getUserParticipantCount() > stopThreshold)
         {
             return;
         }

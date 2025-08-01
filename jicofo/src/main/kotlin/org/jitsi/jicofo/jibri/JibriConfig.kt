@@ -63,6 +63,18 @@ class JibriConfig private constructor() {
         "jicofo.jibri.use-private-address-connectivity".from(newConfig)
     }
 
+    /** Number of user participants required to automatically start a Jibri
+     *  recording session. Defaults to 2 if not specified. */
+    val autoStartParticipants: Int? by optionalconfig {
+        "jicofo.jibri.auto-start-participants".from(newConfig)
+    }
+
+    /** Number of user participants below which active Jibri recording sessions
+     *  will be stopped automatically. Defaults to 1 if not specified. */
+    val autoStopParticipants: Int? by optionalconfig {
+        "jicofo.jibri.auto-stop-participants".from(newConfig)
+    }
+
     companion object {
         @JvmField
         val config = JibriConfig()
