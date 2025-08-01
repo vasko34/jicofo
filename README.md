@@ -36,6 +36,16 @@ drops to one or less. The feature is enabled by default and can be disabled by
 setting `jicofo.jibri.auto-record = false`. A sample configuration can be found
 at `resources/config/jicofo.conf.example`.
 
+```
+jicofo {
+  jibri {
+    auto-start-participants = 2
+    auto-stop-participants = 1
+    auto-record = true
+  }
+}
+```
+
 # Installation
 ## Debian
 
