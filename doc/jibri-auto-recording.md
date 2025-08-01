@@ -12,8 +12,12 @@ jicofo {
 
     # Number of participants below which any active recording stops
     auto-stop-participants = 1
+
+    # Enable or disable automatic recording
+    auto-record = true
   }
 }
 ```
 
-If not explicitly set, the defaults of `2` and `1` are used.
+If not explicitly set, the defaults of `2` and `1` are used for the participant
+thresholds, and automatic recording is enabled.

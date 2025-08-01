@@ -75,6 +75,11 @@ class JibriConfig private constructor() {
         "jicofo.jibri.auto-stop-participants".from(newConfig)
     }
 
+    /** Whether automatic Jibri recording based on participant count is enabled. */
+    val autoRecord: Boolean by config {
+        "jicofo.jibri.auto-record".from(newConfig)
+    }
+
     companion object {
         @JvmField
         val config = JibriConfig()

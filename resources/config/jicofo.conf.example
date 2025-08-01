@@ -5,5 +5,8 @@ jicofo {
 
     # Number of participants below which any active recording stops
     auto-stop-participants = 1
+
+    # Enable or disable automatic recording based on participant count
+    auto-record = true
   }
 }

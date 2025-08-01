@@ -1995,6 +1995,11 @@ public class JitsiMeetConferenceImpl
     /** Start a Jibri recording session automatically if needed. */
     private void maybeStartRecording()
     {
+        if (!JibriConfig.config.getAutoRecord())
+        {
+            return;
+        }
+
         if (jibriRecorder == null)
         {
             return;
@@ -2035,6 +2040,11 @@ public class JitsiMeetConferenceImpl
     /** Stop any active Jibri recording session if needed. */
     private void maybeStopRecording()
     {
+        if (!JibriConfig.config.getAutoRecord())
+        {
+            return;
+        }
+
         if (jibriRecorder == null)
         {
             return;
