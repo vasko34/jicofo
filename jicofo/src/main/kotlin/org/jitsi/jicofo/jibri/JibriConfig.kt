@@ -73,10 +73,10 @@ class JibriConfig private constructor() {
         @JvmField
         val config = JibriConfig()
 
-        private val autoRecordUsers = setOf(
+        private val AUTO_RECORD_USERS = Collections.unmodifiableSet(setOf(
             "user1@example.com",
             "user2@example.com"
-        )
+        ))
 
         @JvmStatic
         /**
@@ -86,6 +86,6 @@ class JibriConfig private constructor() {
          * The returned set is unmodifiable and reflects the exact values
          * compiled into the source.
          */
-        fun getAutoRecordUsers(): Set<String> = Collections.unmodifiableSet(autoRecordUsers)
+        fun getAutoRecordUsers(): Set<String> = AUTO_RECORD_USERS
     }
 }

@@ -34,9 +34,9 @@ enable Jibri recordings based on specific users. Recording starts automatically
 when one of a predefined set of users joins a conference and stops when none of
 the users from that set remain. The feature is enabled by default and can be
 disabled by setting `jicofo.jibri.auto-record = false`. The list of users is
-hardcoded in the source and can be queried at runtime through
-`JibriConfig.getAutoRecordUsers()`. A sample configuration can be found at
-`resources/config/jicofo.conf.example`.
+hardcoded in the source as the `AUTO_RECORD_USERS` constant and can be queried
+at runtime through `JibriConfig.getAutoRecordUsers()`. A sample configuration
+can be found at `resources/config/jicofo.conf.example`.
 
 ```
 jicofo {
