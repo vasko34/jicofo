@@ -21,6 +21,11 @@ source code. For example, retrieving the set in Kotlin looks like this:
 val autoUsers: Set<EntityBareJid> = JibriConfig.getAutoRecordUsers()
 ```
 
+The same call from Java returns an unmodifiable `Set`:
+
+```java
+Set<EntityBareJid> autoUsers = JibriConfig.getAutoRecordUsers();
+```
 
 This behaviour is controlled with the following configuration option in
 `jicofo.conf`:

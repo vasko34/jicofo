@@ -45,6 +45,14 @@ runtime through the immutable set returned by
 `JibriConfig.isAutoRecordUser(jid)`. A sample configuration can be found at
 `resources/config/jicofo.conf.example`.
 
+```kotlin
+val autoUsers: Set<EntityBareJid> = JibriConfig.getAutoRecordUsers()
+```
+
+```java
+Set<EntityBareJid> autoUsers = JibriConfig.getAutoRecordUsers();
+```
+
 ```
 jicofo {
   jibri {
