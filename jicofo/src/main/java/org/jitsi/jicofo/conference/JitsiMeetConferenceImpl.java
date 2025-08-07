@@ -1954,6 +1954,9 @@ public class JitsiMeetConferenceImpl
 
     private long userParticipantCount = 0;
 
+    // Tracks how many users from the auto-record set are currently present in
+    // the conference. Recording is started when this count transitions from 0
+    // to 1 and stopped when it returns to 0.
     private int autoRecordUserCount = 0;
 
     private void userParticipantAdded(Participant participant)

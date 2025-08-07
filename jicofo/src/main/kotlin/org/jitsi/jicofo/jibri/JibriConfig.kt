@@ -90,7 +90,8 @@ class JibriConfig private constructor() {
          * automatic recording when they join a conference.
          *
          * The returned set is unmodifiable and reflects the exact values
-         * compiled into the source.
+         * compiled into the source.  It is exposed for any components which
+         * need to inspect the configured users at runtime.
          */
         fun getAutoRecordUsers(): Set<EntityBareJid> = AUTO_RECORD_USERS
 

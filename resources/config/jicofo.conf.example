@@ -5,8 +5,8 @@ jicofo {
     # stops when all such users leave. Jicofo keeps a count of these users and
     # triggers recording only when the count goes from zero to one. The set is
     # hardcoded in the source as the AUTO_RECORD_USERS constant (containing
-    # EntityBareJid values) and can be inspected via
-    # JibriConfig.getAutoRecordUsers(). Set to false to disable.
+    # EntityBareJid values) and can be inspected via the immutable set returned
+    # by JibriConfig.getAutoRecordUsers(). Set to false to disable.
     auto-record = true
   }
 }

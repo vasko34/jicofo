@@ -40,9 +40,10 @@ default and can be disabled by setting `jicofo.jibri.auto-record = false`.
 The list of users is hardcoded in the source as the `AUTO_RECORD_USERS`
 constant (a set of `EntityBareJid` values) and contains
 `user1@example.com` and `user2@example.com` by default. It can be inspected at
-runtime through `JibriConfig.getAutoRecordUsers()` or individual entries can be
-checked via `JibriConfig.isAutoRecordUser(jid)`. A sample configuration can be
-found at `resources/config/jicofo.conf.example`.
+runtime through the immutable set returned by
+`JibriConfig.getAutoRecordUsers()` or individual entries can be checked via
+`JibriConfig.isAutoRecordUser(jid)`. A sample configuration can be found at
+`resources/config/jicofo.conf.example`.
 
 ```
 jicofo {
