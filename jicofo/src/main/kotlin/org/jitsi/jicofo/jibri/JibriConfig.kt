@@ -84,15 +84,15 @@ class JibriConfig private constructor() {
             JidCreate.entityBareFrom("user2@example.com")
         ))
 
-        @JvmStatic
         /**
          * Returns the hardcoded set of user identifiers that will trigger
          * automatic recording when they join a conference.
          *
          * The returned set is unmodifiable and reflects the exact values
-         * compiled into the source.  It is exposed for any components which
+         * compiled into the source. It is exposed for any components which
          * need to inspect the configured users at runtime.
          */
+        @JvmStatic
         fun getAutoRecordUsers(): Set<EntityBareJid> = AUTO_RECORD_USERS
 
         /**
