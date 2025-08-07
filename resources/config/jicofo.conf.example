@@ -2,10 +2,11 @@ jicofo {
   jibri {
     # Enable or disable automatic recording. Enabled by default. When
     # enabled, recording starts when a user from a predefined set joins and
-    # stops when all such users leave. The set is hardcoded in the source as
-    # the AUTO_RECORD_USERS constant (containing EntityBareJid values) and can
-    # be inspected via JibriConfig.getAutoRecordUsers(). Set to false to
-    # disable.
+    # stops when all such users leave. Jicofo keeps a count of these users and
+    # triggers recording only when the count goes from zero to one. The set is
+    # hardcoded in the source as the AUTO_RECORD_USERS constant (containing
+    # EntityBareJid values) and can be inspected via
+    # JibriConfig.getAutoRecordUsers(). Set to false to disable.
     auto-record = true
   }
 }

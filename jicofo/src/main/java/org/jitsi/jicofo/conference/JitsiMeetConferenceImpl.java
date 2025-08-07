@@ -1959,15 +1959,19 @@ public class JitsiMeetConferenceImpl
     private void userParticipantAdded(Participant participant)
     {
         boolean autoUser = isAutoRecordUser(participant);
+        boolean shouldStart = false;
+
         synchronized (participantLock)
         {
             userParticipantCount++;
             if (autoUser)
             {
                 autoRecordUserCount++;
+                shouldStart = autoRecordUserCount == 1;
             }
         }
-        if (autoUser)
+
+        if (shouldStart)
         {
             maybeStartRecording(participant);
         }
@@ -1976,6 +1980,8 @@ public class JitsiMeetConferenceImpl
     private void userParticipantRemoved(Participant participant)
     {
         boolean autoUser = isAutoRecordUser(participant);
+        boolean shouldStop = false;
+
         synchronized(participantLock)
         {
             if (userParticipantCount <= 0)
@@ -1998,10 +2004,15 @@ public class JitsiMeetConferenceImpl
                 else
                 {
                     autoRecordUserCount--;
+                    shouldStop = autoRecordUserCount == 0;
                 }
             }
         }
-        maybeStopRecording();
+
+        if (shouldStop)
+        {
+            maybeStopRecording();
+        }
     }
 
     /**
@@ -2036,7 +2047,7 @@ public class JitsiMeetConferenceImpl
 
         synchronized (participantLock)
         {
-            if (autoRecordUserCount != 1)
+            if (autoRecordUserCount == 0)
             {
                 return;
             }

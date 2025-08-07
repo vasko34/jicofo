@@ -4,7 +4,10 @@ Jicofo can start and stop recordings automatically when specific users join or
 leave a conference. When enabled, Jicofo instructs Jibri to start recording as
 soon as one of a hardcoded set of users joins a conference while no other users
 from the set are present. Recording stops automatically when none of the users
-from the set remain in the conference. The set of users is defined in the
+from the set remain in the conference. Internally Jicofo keeps a count of
+auto-record users in the room and triggers recording only when this count
+transitions from 0 to 1 and stops when it returns to 0. The set of users is
+defined in the
 source code as an immutable constant `AUTO_RECORD_USERS` (containing
 `EntityBareJid` values) and exposed via the
 `JibriConfig.getAutoRecordUsers()` function. A convenience
