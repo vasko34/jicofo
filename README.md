@@ -54,6 +54,16 @@ val autoUsers: Set<EntityBareJid> = JibriConfig.getAutoRecordUsers()
 Set<EntityBareJid> autoUsers = JibriConfig.getAutoRecordUsers();
 ```
 
+Membership for a specific JID can be tested at runtime:
+
+```kotlin
+val shouldRecord = JibriConfig.isAutoRecordUser(someJid)
+```
+
+```java
+boolean shouldRecord = JibriConfig.isAutoRecordUser(someJid);
+```
+
 ```
 jicofo {
   jibri {

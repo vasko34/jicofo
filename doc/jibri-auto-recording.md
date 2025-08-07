@@ -28,6 +28,16 @@ The same call from Java returns an unmodifiable `Set`:
 Set<EntityBareJid> autoUsers = JibriConfig.getAutoRecordUsers();
 ```
 
+Individual JIDs can be checked for membership in the set:
+
+```kotlin
+val shouldRecord = JibriConfig.isAutoRecordUser(someJid)
+```
+
+```java
+boolean shouldRecord = JibriConfig.isAutoRecordUser(someJid);
+```
+
 This behaviour is controlled with the following configuration option in
 `jicofo.conf`:
 

@@ -6,7 +6,8 @@ jicofo {
     # triggers recording only when the count goes from zero to one. The set is
     # hardcoded in the source as the AUTO_RECORD_USERS constant (containing
     # EntityBareJid values) and can be inspected via the immutable set returned
-    # by JibriConfig.getAutoRecordUsers(). Set to false to disable.
+    # by JibriConfig.getAutoRecordUsers() or tested with
+    # JibriConfig.isAutoRecordUser(jid). Set to false to disable.
     auto-record = true
   }
 }
