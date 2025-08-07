@@ -6,16 +6,16 @@ soon as one of a hardcoded set of users joins a conference while no other users
 from the set are present. Recording stops automatically when none of the users
 from the set remain in the conference. Internally Jicofo keeps a count of
 auto-record users in the room and triggers recording only when this count
-transitions from 0 to 1 and stops when it returns to 0. The set of users is
-defined in the
-source code as an immutable constant `AUTO_RECORD_USERS` (containing
-`EntityBareJid` values) and exposed via the
-`JibriConfig.getAutoRecordUsers()` function. A convenience
+transitions from 0 to 1 and stops when it returns to 0.
+
+The set of users is defined in the source code as an immutable constant
+`AUTO_RECORD_USERS` (containing `EntityBareJid` values). It is exposed via the
+`JibriConfig.getAutoRecordUsers()` function, which returns an unmodifiable
+collection that can be inspected at runtime. A convenience
 `JibriConfig.isAutoRecordUser(jid)` method is also available to test individual
-JIDs. The returned set is unmodifiable and contains `user1@example.com` and
-`user2@example.com` by default. The membership list can be adjusted by
-modifying the constant in the source code and inspected at runtime through
-`JibriConfig.getAutoRecordUsers()`, for example:
+JIDs. The returned set contains `user1@example.com` and `user2@example.com` by
+default. The membership list can be adjusted by modifying the constant in the
+source code. For example, retrieving the set in Kotlin looks like this:
 
 ```kotlin
 val autoUsers: Set<EntityBareJid> = JibriConfig.getAutoRecordUsers()
@@ -28,7 +28,7 @@ This behaviour is controlled with the following configuration option in
 ```
 jicofo {
   jibri {
-    # Enable or disable automatic recording
+    # Enable or disable automatic recording (enabled by default)
     auto-record = true
   }
 }
