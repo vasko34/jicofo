@@ -900,7 +900,7 @@ public class JitsiMeetConferenceImpl
             {
                 if (participant.isUserParticipant())
                 {
-                    userParticipantAdded();
+                    userParticipantAdded(participant);
                 }
                 else if (participant.getChatMember().getRole() == MemberRole.VISITOR)
                 {
@@ -1138,7 +1138,7 @@ public class JitsiMeetConferenceImpl
                 }
                 if (removed.isUserParticipant())
                 {
-                    userParticipantRemoved();
+                    userParticipantRemoved(removed);
                 }
                 else if (removed.getChatMember().getRole() == MemberRole.VISITOR)
                 {
@@ -1954,17 +1954,28 @@ public class JitsiMeetConferenceImpl
 
     private long userParticipantCount = 0;
 
-    private void userParticipantAdded()
+    private int autoRecordUserCount = 0;
+
+    private void userParticipantAdded(Participant participant)
     {
+        boolean autoUser = isAutoRecordUser(participant);
         synchronized (participantLock)
         {
             userParticipantCount++;
+            if (autoUser)
+            {
+                autoRecordUserCount++;
+            }
         }
-        maybeStartRecording();
+        if (autoUser)
+        {
+            maybeStartRecording(participant);
+        }
     }
 
-    private void userParticipantRemoved()
+    private void userParticipantRemoved(Participant participant)
     {
+        boolean autoUser = isAutoRecordUser(participant);
         synchronized(participantLock)
         {
             if (userParticipantCount <= 0)
@@ -1975,6 +1986,19 @@ public class JitsiMeetConferenceImpl
             else
             {
                 userParticipantCount--;
+            }
+
+            if (autoUser)
+            {
+                if (autoRecordUserCount <= 0)
+                {
+                    logger.error("autoRecordUserCount out of sync - trying to reduce when value is " +
+                        autoRecordUserCount);
+                }
+                else
+                {
+                    autoRecordUserCount--;
+                }
             }
         }
         maybeStopRecording();
@@ -1993,7 +2017,7 @@ public class JitsiMeetConferenceImpl
     }
 
     /** Start a Jibri recording session automatically if needed. */
-    private void maybeStartRecording()
+    private void maybeStartRecording(Participant initiator)
     {
         if (!JibriConfig.config.getAutoRecord())
         {
@@ -2010,22 +2034,12 @@ public class JitsiMeetConferenceImpl
             return;
         }
 
-        int startThreshold = JibriConfig.config.getAutoStartParticipants() == null ? 2
-            : JibriConfig.config.getAutoStartParticipants();
-
-        if (getUserParticipantCount() < startThreshold)
+        synchronized (participantLock)
         {
-            return;
-        }
-
-        Participant initiator = participants.values().stream()
-            .filter(Participant::isUserParticipant)
-            .findFirst()
-            .orElse(null);
-
-        if (initiator == null)
-        {
-            return;
+            if (autoRecordUserCount != 1)
+            {
+                return;
+            }
         }
 
         JibriIq startIq = new JibriIq();
@@ -2050,18 +2064,28 @@ public class JitsiMeetConferenceImpl
             return;
         }
 
-        int stopThreshold = JibriConfig.config.getAutoStopParticipants() == null ? 1
-            : JibriConfig.config.getAutoStopParticipants();
-
-        if (getUserParticipantCount() > stopThreshold)
+        synchronized (participantLock)
         {
-            return;
+            if (autoRecordUserCount > 0)
+            {
+                return;
+            }
         }
 
         for (JibriSession session : jibriRecorder.getJibriSessions())
         {
             session.stop(null);
         }
+    }
+
+    private boolean isAutoRecordUser(Participant participant)
+    {
+        Jid jid = participant.getChatMember().getJid();
+        if (jid == null)
+        {
+            return false;
+        }
+        return JibriConfig.getAutoRecordUsers().contains(jid.asBareJid().toString());
     }
 
     /**

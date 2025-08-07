@@ -1,12 +1,6 @@
 jicofo {
   jibri {
-    # Number of participants required in the conference before recording starts
-    auto-start-participants = 2
-
-    # Number of participants below which any active recording stops
-    auto-stop-participants = 1
-
-    # Enable or disable automatic recording based on participant count
+    # Enable or disable automatic recording
     auto-record = true
   }
 }
