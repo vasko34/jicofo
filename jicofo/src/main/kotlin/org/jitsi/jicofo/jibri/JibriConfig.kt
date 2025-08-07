@@ -74,6 +74,11 @@ class JibriConfig private constructor() {
         @JvmField
         val config = JibriConfig()
 
+        /**
+         * The hardcoded list of user JIDs that should trigger automatic
+         * recording. The collection is wrapped in [Collections.unmodifiableSet]
+         * to guarantee immutability when accessed from Java code.
+         */
         private val AUTO_RECORD_USERS: Set<EntityBareJid> = Collections.unmodifiableSet(setOf(
             JidCreate.entityBareFrom("user1@example.com"),
             JidCreate.entityBareFrom("user2@example.com")

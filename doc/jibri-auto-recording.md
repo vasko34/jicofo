@@ -12,7 +12,12 @@ source code as an immutable constant `AUTO_RECORD_USERS` (containing
 JIDs. The returned set is unmodifiable and contains `user1@example.com` and
 `user2@example.com` by default. The membership list can be adjusted by
 modifying the constant in the source code and inspected at runtime through
-`JibriConfig.getAutoRecordUsers()`.
+`JibriConfig.getAutoRecordUsers()`, for example:
+
+```kotlin
+val autoUsers: Set<EntityBareJid> = JibriConfig.getAutoRecordUsers()
+```
+
 
 This behaviour is controlled with the following configuration option in
 `jicofo.conf`:
