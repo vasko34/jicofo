@@ -25,6 +25,7 @@ import org.jitsi.metaconfig.optionalconfig
 import org.jxmpp.jid.EntityBareJid
 import org.jxmpp.jid.impl.JidCreate
 import java.time.Duration
+import java.util.Collections
 
 class JibriConfig private constructor() {
     val breweryJid: EntityBareJid? by optionalconfig {
@@ -81,7 +82,10 @@ class JibriConfig private constructor() {
         /**
          * Returns the hardcoded set of user identifiers that will trigger
          * automatic recording when they join a conference.
+         *
+         * The returned set is unmodifiable and reflects the exact values
+         * compiled into the source.
          */
-        fun getAutoRecordUsers(): Set<String> = autoRecordUsers
+        fun getAutoRecordUsers(): Set<String> = Collections.unmodifiableSet(autoRecordUsers)
     }
 }
