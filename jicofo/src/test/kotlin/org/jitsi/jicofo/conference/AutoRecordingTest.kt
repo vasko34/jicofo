@@ -63,9 +63,11 @@ class AutoRecordingTest : ShouldSpec({
     isolationMode = IsolationMode.InstancePerLeaf
 
     should("start and stop recording based on auto-record users") {
-        withNewConfig("""
-            jicofo.jibri.auto-record = true
-        """) {
+        // Use the default configuration where automatic recording is enabled.
+        // Providing an empty configuration verifies that auto-record is on by
+        // default and that recording starts/stops based on the presence of
+        // users from the auto-record set.
+        withNewConfig("") {
             val (conference, jibriRecorder, sessionMock) = createConference()
             val participant = createParticipant("user1")
 
@@ -90,9 +92,8 @@ class AutoRecordingTest : ShouldSpec({
     }
 
     should("start once for multiple users and stop when last leaves") {
-        withNewConfig("""
-            jicofo.jibri.auto-record = true
-        """) {
+        // Automatic recording is enabled by default.
+        withNewConfig("") {
             val (conference, jibriRecorder, sessionMock) = createConference()
             val participant1 = createParticipant("user1")
             val participant2 = createParticipant("user2")

@@ -63,7 +63,7 @@ class JibriConfig private constructor() {
         "jicofo.jibri.use-private-address-connectivity".from(newConfig)
     }
 
-    /** Whether automatic Jibri recording is enabled. */
+    /** Whether automatic Jibri recording is enabled. Defaults to `true`. */
     val autoRecord: Boolean by config {
         "jicofo.jibri.auto-record".from(newConfig)
     }

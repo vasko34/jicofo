@@ -1,8 +1,8 @@
 jicofo {
   jibri {
-    # Enable or disable automatic recording. When enabled, recording starts
-    # when a user from a predefined set joins and stops when all such users
-    # leave.
+    # Enable or disable automatic recording. Enabled by default. When
+    # enabled, recording starts when a user from a predefined set joins and
+    # stops when all such users leave. Set to false to disable.
     auto-record = true
   }
 }
