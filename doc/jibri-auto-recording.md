@@ -23,5 +23,6 @@ jicofo {
 }
 ```
 
-Automatic recording is enabled by default. To disable automatic recording set
-`auto-record = false` under the `jibri` section.
+Automatic recording is enabled by default (the default is specified in
+`reference.conf`). To disable automatic recording set `auto-record = false`
+under the `jibri` section.
