@@ -73,6 +73,10 @@ class JibriConfig private constructor() {
         val config = JibriConfig()
 
         @JvmStatic
+        /**
+         * Returns the hardcoded set of user identifiers that will trigger
+         * automatic recording when they join a conference.
+         */
         fun getAutoRecordUsers(): Set<String> = setOf(
             "user1@example.com",
             "user2@example.com"
