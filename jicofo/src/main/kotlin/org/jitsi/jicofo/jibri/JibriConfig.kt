@@ -74,9 +74,9 @@ class JibriConfig private constructor() {
         @JvmField
         val config = JibriConfig()
 
-        private val AUTO_RECORD_USERS = Collections.unmodifiableSet(setOf(
-            "user1@example.com",
-            "user2@example.com"
+        private val AUTO_RECORD_USERS: Set<EntityBareJid> = Collections.unmodifiableSet(setOf(
+            JidCreate.entityBareFrom("user1@example.com"),
+            JidCreate.entityBareFrom("user2@example.com")
         ))
 
         @JvmStatic
@@ -87,7 +87,7 @@ class JibriConfig private constructor() {
          * The returned set is unmodifiable and reflects the exact values
          * compiled into the source.
          */
-        fun getAutoRecordUsers(): Set<String> = AUTO_RECORD_USERS
+        fun getAutoRecordUsers(): Set<EntityBareJid> = AUTO_RECORD_USERS
 
         /**
          * Convenience method which checks whether a given JID belongs to the
@@ -98,6 +98,6 @@ class JibriConfig private constructor() {
          */
         @JvmStatic
         fun isAutoRecordUser(jid: Jid?): Boolean =
-            jid?.asBareJid()?.toString()?.let { AUTO_RECORD_USERS.contains(it) } ?: false
+            jid?.asBareJid()?.let { AUTO_RECORD_USERS.contains(it) } ?: false
     }
 }

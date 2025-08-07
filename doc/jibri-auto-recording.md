@@ -5,7 +5,8 @@ leave a conference. When enabled, Jicofo instructs Jibri to start recording as
 soon as one of a hardcoded set of users joins a conference while no other users
 from the set are present. Recording stops automatically when none of the users
 from the set remain in the conference. The set of users is defined in the
-source code as an immutable constant `AUTO_RECORD_USERS` and exposed via the
+source code as an immutable constant `AUTO_RECORD_USERS` (containing
+`EntityBareJid` values) and exposed via the
 `JibriConfig.getAutoRecordUsers()` function. A convenience
 `JibriConfig.isAutoRecordUser(jid)` method is also available to test individual
 JIDs. The returned set is unmodifiable and contains `user1@example.com` and
