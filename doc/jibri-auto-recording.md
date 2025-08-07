@@ -8,7 +8,8 @@ from the set remain in the conference. The set of users is defined in the
 source code as an immutable constant and returned by the
 `JibriConfig.getAutoRecordUsers()` function. By default this set contains
 `user1@example.com` and `user2@example.com`, and can be adjusted by modifying
-the constant in the source.
+the constant in the source. The list can also be queried at runtime via the
+`JibriConfig.getAutoRecordUsers()` function.
 
 This behaviour is controlled with the following configuration option in
 `jicofo.conf`:
