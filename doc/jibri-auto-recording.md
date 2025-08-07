@@ -6,10 +6,12 @@ soon as one of a hardcoded set of users joins a conference while no other users
 from the set are present. Recording stops automatically when none of the users
 from the set remain in the conference. The set of users is defined in the
 source code as an immutable constant `AUTO_RECORD_USERS` and exposed via the
-`JibriConfig.getAutoRecordUsers()` function. The returned set is unmodifiable
-and contains `user1@example.com` and `user2@example.com` by default. The
-membership list can be adjusted by modifying the constant in the source code
-and inspected at runtime through `JibriConfig.getAutoRecordUsers()`.
+`JibriConfig.getAutoRecordUsers()` function. A convenience
+`JibriConfig.isAutoRecordUser(jid)` method is also available to test individual
+JIDs. The returned set is unmodifiable and contains `user1@example.com` and
+`user2@example.com` by default. The membership list can be adjusted by
+modifying the constant in the source code and inspected at runtime through
+`JibriConfig.getAutoRecordUsers()`.
 
 This behaviour is controlled with the following configuration option in
 `jicofo.conf`:

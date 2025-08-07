@@ -26,6 +26,7 @@ import org.jxmpp.jid.EntityBareJid
 import org.jxmpp.jid.impl.JidCreate
 import java.time.Duration
 import java.util.Collections
+import org.jxmpp.jid.Jid
 
 class JibriConfig private constructor() {
     val breweryJid: EntityBareJid? by optionalconfig {
@@ -87,5 +88,16 @@ class JibriConfig private constructor() {
          * compiled into the source.
          */
         fun getAutoRecordUsers(): Set<String> = AUTO_RECORD_USERS
+
+        /**
+         * Convenience method which checks whether a given JID belongs to the
+         * hardcoded auto-record list.
+         *
+         * @param jid the JID to check. Both full and bare JIDs are accepted.
+         * @return `true` when the user should trigger automatic recording.
+         */
+        @JvmStatic
+        fun isAutoRecordUser(jid: Jid?): Boolean =
+            jid?.asBareJid()?.toString()?.let { AUTO_RECORD_USERS.contains(it) } ?: false
     }
 }

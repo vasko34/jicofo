@@ -2080,12 +2080,7 @@ public class JitsiMeetConferenceImpl
 
     private boolean isAutoRecordUser(Participant participant)
     {
-        Jid jid = participant.getChatMember().getJid();
-        if (jid == null)
-        {
-            return false;
-        }
-        return JibriConfig.getAutoRecordUsers().contains(jid.asBareJid().toString());
+        return JibriConfig.isAutoRecordUser(participant.getChatMember().getJid());
     }
 
     /**
